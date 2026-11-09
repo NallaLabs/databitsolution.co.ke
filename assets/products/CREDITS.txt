@@ -1,0 +1,12 @@
+Equipment photos (free under the Unsplash License: https://unsplash.com/license)
+Each photo comes in two sizes: <name>-800.webp and <name>-1600.webp.
+
+computers    https://unsplash.com/photos/home-office-workspace-with-computer-setup-ACXCkwUdDZQ
+servers      https://unsplash.com/photos/cable-network-M5tzZtFCOfs
+printing     https://unsplash.com/photos/a-printer-sitting-on-top-of-a-table-I8sWaXL5ezo  (Emiliano Vittoriosi)
+security     https://unsplash.com/photos/white-box-security-camera-on-wall-xJc--frJbuw   (Siarhei Horbach)
+pos          https://unsplash.com/photos/-gkndM1GvSA
+display      https://unsplash.com/photos/a-close-up-of-a-projector-on-a-ceiling-iihXfbL342c
+accessories  https://unsplash.com/photos/a-computer-mouse-sitting-on-top-of-a-table-oeS2Rtrc4Oc
+
+To use Databit's own photos instead, replace a pair of files with the same names.

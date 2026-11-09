@@ -1,0 +1,20 @@
+# Project docs (local only)
+docs/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*~
+
+# Logs & env
+*.log
+.env
+.env.*
+
+# Local backup of earlier version
+_previous-v1/
