@@ -1,0 +1,10 @@
+# Databit Solution Ltd: crawl policy
+# Open to search engines, AI assistants and AI training.
+# Content-Signal (contentsignals.org) states usage preferences; it is not enforcement.
+# To opt out of AI training, set ai-train=no below.
+
+User-agent: *
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
+Allow: /
+
+Sitemap: https://databitsolution.co.ke/sitemap.xml
