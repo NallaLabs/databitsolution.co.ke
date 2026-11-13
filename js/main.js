@@ -7,7 +7,8 @@
    phone / whatsapp: international format, e.g. "+254 712 345 678"
    ---------------------------------------------------------- */
 const SITE = {
-  phone: "",
+  phone: "0758 358 610",
+  phone2: "0702 605 096", // optional second line
   whatsapp: "",
   address: "",   // e.g. "Building name, Street, Nairobi". Empty shows "Nairobi, Kenya"
   hours: "",     // e.g. "Mon–Sat, 8:00am – 6:00pm"
@@ -21,6 +22,7 @@ const intl = (s) => { const d = digits(s); return d.startsWith("0") ? `254${d.sl
 (function applySiteDetails() {
   const values = {
     phone: SITE.phone,
+    phone2: SITE.phone2,
     whatsapp: SITE.whatsapp,
     whatsappLabel: SITE.whatsapp,
     address: SITE.address,
@@ -28,6 +30,7 @@ const intl = (s) => { const d = digits(s); return d.startsWith("0") ? `254${d.sl
   };
   const hrefs = {
     phone: SITE.phone && `tel:+${intl(SITE.phone)}`,
+    phone2: SITE.phone2 && `tel:+${intl(SITE.phone2)}`,
     whatsapp: SITE.whatsapp && `https://wa.me/${intl(SITE.whatsapp)}`,
   };
   document.querySelectorAll("[data-site]").forEach((el) => {
