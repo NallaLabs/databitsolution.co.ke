@@ -491,7 +491,11 @@
           </ul>
         </div>
 
-        <form class="form" id="quoteForm" novalidate aria-describedby="formHint">
+        <form class="form" id="quoteForm" action="https://api.web3forms.com/submit" method="POST" novalidate aria-describedby="formHint">
+          <input type="hidden" name="access_key" value="5cb66d8e-99ef-46ab-bc4b-6ac0e211fcf0" />
+          <input type="hidden" name="subject" value="New quote request from databitsolution.co.ke" />
+          <input type="hidden" name="from_name" value="Databit Solutions website" />
+          <input type="checkbox" name="botcheck" class="sr-only" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none" />
           <p class="form__hint" id="formHint">Fields marked <span aria-hidden="true">*</span><span class="sr-only">required</span> are required.</p>
           <div class="form__row">
             <div class="field">
@@ -544,7 +548,7 @@
             <textarea id="f-message" name="message" rows="4" placeholder="Quantities, models, location, or the problem you're having"></textarea>
           </div>
           <button type="submit" class="btn btn--primary btn--lg btn--block">Send request</button>
-          <p class="form__note">Sending opens your email app with your request filled in, addressed to info@databitsolution.co.ke.</p>
+          <p class="form__note">Your request goes straight to our team at info@databitsolution.co.ke.</p>
           <div class="form__status" id="formStatus" role="status" aria-live="polite" tabindex="-1"></div>
         </form>
       </div>

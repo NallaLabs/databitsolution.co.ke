@@ -129,8 +129,12 @@ function showStatus(type, html) {
   status.innerHTML = `${icon(type === "ok" ? "circle-check" : "circle-alert")}<div>${html}</div>`;
 }
 
-form.addEventListener("submit", (e) => {
+const WEB3FORMS_URL = "https://api.web3forms.com/submit";
+const submitBtn = form.querySelector('button[type="submit"]');
+
+form.addEventListener("submit", async (e) => {
   e.preventDefault();
+  if (submitBtn.disabled) return; // already sending
   const fields = Object.keys(rules).map((n) => form.elements[n]);
   const invalid = fields.filter((f) => !check(f));
   if (invalid.length) {
@@ -138,19 +142,38 @@ form.addEventListener("submit", (e) => {
     invalid[0].focus();
     return;
   }
-  const f = form.elements;
-  const subject = `Quote request: ${f.interest.value}`;
-  const body = [
-    `Name: ${f.name.value.trim()}`,
-    `Phone: ${f.phone.value.trim()}`,
-    f.email.value.trim() ? `Email: ${f.email.value.trim()}` : null,
-    `Interested in: ${f.interest.value}`,
-    "",
-    f.message.value.trim(),
-  ].filter((l) => l !== null).join("\n");
-  window.location.href = `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-  showStatus("ok", `<strong>Your request is ready in your email app.</strong> Press send there to reach us. If nothing opened, email <a href="mailto:${EMAIL}">${EMAIL}</a> directly.`);
-  status.focus();
+
+  const formData = new FormData(form);
+  formData.set("subject", `Quote request: ${form.elements.interest.value} (${form.elements.name.value.trim()})`);
+  if (!formData.get("email")) formData.delete("email"); // optional; Web3Forms rejects an empty email
+
+  const originalText = submitBtn.textContent;
+  submitBtn.textContent = "Sending…";
+  submitBtn.disabled = true;
+  form.setAttribute("aria-busy", "true");
+
+  try {
+    const response = await fetch(WEB3FORMS_URL, {
+      method: "POST",
+      headers: { Accept: "application/json" },
+      body: formData,
+    });
+    const data = await response.json().catch(() => ({}));
+    if (response.ok && data.success !== false) {
+      form.reset();
+      fields.forEach((f) => f.removeAttribute("aria-invalid"));
+      showStatus("ok", `<strong>Thank you, your request has been sent.</strong> Our team will get back to you shortly.`);
+    } else {
+      showStatus("error", `We couldn't send your request${data.message ? ` (${String(data.message).replace(/[<>&"]/g, "")})` : ""}. Please try again, or email <a href="mailto:${EMAIL}">${EMAIL}</a> directly.`);
+    }
+  } catch {
+    showStatus("error", `Something went wrong. Check your connection and try again, or email <a href="mailto:${EMAIL}">${EMAIL}</a> directly.`);
+  } finally {
+    submitBtn.textContent = originalText;
+    submitBtn.disabled = false;
+    form.removeAttribute("aria-busy");
+    status.focus();
+  }
 });
 
 /* ---------- Partners: optional logos + gentle marquee ---------- */
