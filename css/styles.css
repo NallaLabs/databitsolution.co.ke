@@ -232,6 +232,7 @@ html:not(.js) .globe-wrap { display: none; }
 .sw:nth-child(even) { padding-left: 24px; padding-right: 0; border-left: 1px solid rgba(255, 255, 255, .35); }
 .sw .ic { width: 30px; height: 30px; margin-bottom: 16px; }
 .sw p { margin-top: 6px; color: var(--white); }
+.sw:last-child:nth-child(odd) { grid-column: 1 / -1; padding-right: 0; }
 
 /* ---------- Services: tall cards with pictograms in the logo's dots-and-links style ---------- */
 .svc-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
