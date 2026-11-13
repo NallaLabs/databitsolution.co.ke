@@ -311,7 +311,10 @@ html:not(.js) .globe-wrap { display: none; }
 }
 
 /* ---------- Team ---------- */
-.team { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
+/* two people: intro on the left, two larger cards on the right */
+.team-wrap { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(32px, 5vw, 72px); align-items: start; }
+.team-wrap .section__head { margin-bottom: 0; }
+.team { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
 .member__photo {
   aspect-ratio: 4 / 5; overflow: hidden; border-radius: 10px; background-color: var(--white);
   background-image: radial-gradient(circle, #d3dae2 1.4px, transparent 1.6px); background-size: 14px 14px;
@@ -384,7 +387,6 @@ html:not(.js) .globe-wrap { display: none; }
 /* ---------- Responsive ---------- */
 @media (max-width: 1080px) {
   .svc-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .team { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .svc { min-height: 400px; }
   .footer__grid { grid-template-columns: 1fr 1fr; }
   .nav { gap: 24px; }
@@ -392,6 +394,8 @@ html:not(.js) .globe-wrap { display: none; }
 }
 
 @media (max-width: 900px) {
+  .team-wrap { grid-template-columns: 1fr; }
+  .team-wrap .section__head { margin-bottom: 8px; }
   :root { --header-h: 64px; }
   .brand img { height: 38px; }
   .menu-btn { display: inline-flex; }
